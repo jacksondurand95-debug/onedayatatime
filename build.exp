@@ -1,0 +1,60 @@
+#!/usr/bin/expect -f
+set timeout 300
+cd /Users/jack/onedayatatime
+spawn env EAS_BUILD_NO_EXPO_GO_WARNING=true eas build --platform ios --profile production --auto-submit
+
+# Handle prompts - say NO to Apple login, use existing creds
+expect {
+    "Do you want to log in to your Apple account?" {
+        send "n\r"
+        exp_continue
+    }
+    "Would you like to reuse" {
+        send "\r"
+        exp_continue
+    }
+    "Select a Distribution Certificate" {
+        send "\r"
+        exp_continue
+    }
+    "Which existing Distribution Certificate" {
+        send "\r"
+        exp_continue
+    }
+    "Generate a new" {
+        send "n\r"
+        exp_continue
+    }
+    "Do you want to" {
+        send "\r"
+        exp_continue
+    }
+    "Would you like to" {
+        send "\r"
+        exp_continue
+    }
+    "Select" {
+        send "\r"
+        exp_continue
+    }
+    "Choose" {
+        send "\r"
+        exp_continue
+    }
+    "Are you sure" {
+        send "Y\r"
+        exp_continue
+    }
+    "Provisioning Profile" {
+        send "\r"
+        exp_continue
+    }
+    -re "https://expo.dev/accounts/.*builds/.*" {
+        puts "\nBuild URL detected!"
+        exp_continue
+    }
+    eof {
+        catch wait result
+        exit [lindex $result 3]
+    }
+}

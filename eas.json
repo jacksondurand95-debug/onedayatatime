@@ -1,0 +1,32 @@
+{
+  "cli": {
+    "version": ">= 3.0.0",
+    "appVersionSource": "local"
+  },
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal",
+      "ios": {
+        "simulator": true
+      }
+    },
+    "preview": {
+      "distribution": "internal"
+    },
+    "production": {
+      "autoIncrement": true
+    }
+  },
+  "submit": {
+    "production": {
+      "ios": {
+        "appleId": "jacksondurand95@gmail.com",
+        "appleTeamId": "UZQPX2G884",
+        "appName": "One Day at a Time",
+        "language": "en-US",
+        "companyName": "JRD Companies LLC"
+      }
+    }
+  }
+}
